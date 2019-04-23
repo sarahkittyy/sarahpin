@@ -1,0 +1,22 @@
+{
+  "name": "sarahpin",
+  "version": "1.0.0",
+  "description": "Pinbot for discord servers!",
+  "main": "src/index.js",
+  "repository": {
+    "url": "https://github.com/sarahkittyy/sarahpin/"
+  },
+  "scripts": {
+    "build": "gulp compile",
+    "start": "gulp && node dist/index.js"
+  },
+  "author": "Sarah",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^11.13.7",
+    "discord.js": "^11.4.2",
+    "gulp": "^4.0.1",
+    "gulp-typescript": "^5.0.1",
+    "typescript": "^3.4.5"
+  }
+}
