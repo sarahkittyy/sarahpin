@@ -332,4 +332,25 @@ ${cmd.args.map((arg: any)=>{
 	{
 		return msg.guild.member(msg.author).hasPermission(perm) || msg.author.id === '135895345296048128';	
 	}
+	
+	/**
+	 * Returns this object's settings as a json object.
+	 */
+	public saveSettings(): object
+	{
+		return {
+			options: this.options
+		};
+	}
+	
+	/**
+	 * Loads settings into this commands instance.
+	 */
+	public loadSettings(settings: object)
+	{
+		if(settings['options'])
+		{
+			this.options = settings['options'];
+		}
+	}
 };
