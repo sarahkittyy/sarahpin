@@ -43,6 +43,8 @@ export default class Commands
 			prefix: '=>'
 		};
 		
+		this.bot.user.setUsername(`${this.options.prefix} | sawahpin!~<3`);
+		
 		this.commands = [
 			{
 				name: 'setgame',
