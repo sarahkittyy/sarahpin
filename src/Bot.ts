@@ -109,4 +109,30 @@ export default class Bot
 		//Set the corresponding option.
 		this.commands.set(option, value);
 	}
+	
+	/**
+	 * Sends a message to the given channel.
+	 */
+	public sendMessage(guildID: string, channelID: string, msg: string): void
+	{
+		const guild = this.bot.guilds.get(guildID);
+		if(!guild)
+		{
+			console.log('invalid guild');
+			return;
+		}
+		const channel = guild.channels.find((channel: Discord.Channel) => channel.id === channelID);
+		if(!channel)
+		{
+			console.log('invalid channel');
+			return;
+		}
+		//Type guard for text channel.
+		if (!((channel): channel is Discord.TextChannel => channel.type === 'text')(channel))
+		{
+			console.log('channel not a text channel');
+			return;
+		}
+		channel.send(msg);
+	}
 };

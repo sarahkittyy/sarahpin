@@ -6,11 +6,11 @@ interface PinServer
 {
 	userpin: string;
 	adminpin: string;
+	threshold: number;
 };
 
 interface PinOptions
 {
-	threshold: number;
 	hours: number;
 	//emote: :pin:
 };
@@ -55,7 +55,6 @@ export default class Pins
 		
 		//Init default options
 		this.options = {
-			threshold: 5,
 			hours: 12
 		};
 		
@@ -83,7 +82,8 @@ export default class Pins
 			{
 				this.servers.set(guild.id, {
 					userpin: 'user-pin',
-					adminpin: 'admin-pin'
+					adminpin: 'admin-pin',
+					threshold: 5
 				});
 			}
 			
@@ -119,7 +119,8 @@ export default class Pins
 		{
 			this.servers.set(msg.guild.id, {
 				userpin: 'user-pin',
-				adminpin: 'admin-pin'
+				adminpin: 'admin-pin',
+				threshold: 5
 			});
 		}
 		
@@ -151,12 +152,13 @@ export default class Pins
 		{
 			this.servers.set(reaction.message.guild.id, {
 				userpin: 'user-pin',
-				adminpin: 'admin-pin'
+				adminpin: 'admin-pin',
+				threshold: 5
 			});
 		}
 		
 		//Check if there are enough pin reactions.
-		if(reaction.emoji.name === '📌' && reaction.count >= this.options.threshold && !this.userpinned.has(reaction.message.id))
+		if(reaction.emoji.name === '📌' && reaction.count >= this.servers.get(reaction.message.guild.id).threshold && !this.userpinned.has(reaction.message.id))
 		{
 			this.pinMessage('user', reaction.message);
 		}

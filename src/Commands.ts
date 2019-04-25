@@ -76,7 +76,7 @@ export default class Commands
 				],
 				permission: 32,
 				func: (msg: Discord.Message, threshold: any) => {
-					this.pinset('threshold', Number.parseInt(threshold));
+					this.pinset('threshold', Number.parseInt(threshold), msg.guild.id);
 					return `Threshold set!`;
 				}
 			},
