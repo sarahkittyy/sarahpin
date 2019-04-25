@@ -130,4 +130,53 @@ export default class Bot
 		}
 		channel.send(msg);
 	}
+	
+	/**
+	 * Save settings into a directory.
+	 */
+	public save(dir: string)
+	{
+		fs.mkdir(dir, (err)=>{
+			if(err) console.log(err);
+			fs.writeFile(`${dir}/pins.json`, JSON.stringify(this.pins.saveSettings()), (err)=>{
+				if(err) console.log(err);
+			});
+			fs.writeFile(`${dir}/commands.json`, JSON.stringify(this.commands.saveSettings()), (err)=>{
+				if(err) console.log(err);
+			});
+		});
+	}
+	
+	/**
+	 * Load settings from a directory.
+	 */
+	public load(dir: string)
+	{
+		fs.exists(dir, (exists: boolean)=>{
+			if(!exists)
+			{
+				console.log(`Path ${dir} doesn't exist.`);
+				return;
+			}
+			
+			fs.readFile(`${dir}/pins.json`, (err, data: Buffer)=>{
+				if(err){console.log(err);}
+				else
+				{
+					let pindata = JSON.parse(data.toString());
+					this.pins.loadSettings(pindata);
+				}
+			});
+			
+			fs.readFile(`${dir}/commands.json`, (err, data: Buffer)=>{
+				if(err){console.log(err);}
+				else
+				{
+					let cmddata = JSON.parse(data.toString());
+					this.commands.loadSettings(cmddata);
+				}
+			})
+		});
+		
+	}
 };

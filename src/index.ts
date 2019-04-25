@@ -2,6 +2,7 @@ import Bot from './Bot';
 import * as readline from 'readline';
 
 let bot = new Bot();
+bot.load('settings');
 
 //Console REPL.
 
@@ -21,6 +22,14 @@ rl.on('line', (str: string)=>{
 	else if(str.startsWith('g.'))
 	{
 		guildID = str.substr(2);
+	}
+	else if(str.startsWith('save.'))
+	{
+		bot.save('settings');
+	}
+	else if(str.startsWith('load.'))
+	{
+		bot.load('settings');
 	}
 	else
 	{
