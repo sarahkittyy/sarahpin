@@ -56,11 +56,28 @@ export default class Commands
 					}
 				],
 				permission: 32,
-				func: (msg: Discord.Message, game: any) => {
-					this.bot.user.setActivity(game, {
+				func: (msg: Discord.Message, ...game: any[]) => {
+					this.bot.user.setActivity(`${game.join(' ')}`, {
 						type: 'PLAYING'
 					});
 					return `Game set!`;
+				}
+			},
+			{
+				name: 'setthreshold',
+				desc: 'Set how many pin reacts are required to pin a message.',
+				args: [
+					{
+						name: 'threshold',
+						desc: 'The amount of pins before a message is pinned.',
+						type: 'number',
+						default: 5
+					}
+				],
+				permission: 32,
+				func: (msg: Discord.Message, threshold: any) => {
+					this.pinset('threshold', Number.parseInt(threshold));
+					return `Threshold set!`;
 				}
 			},
 			{
@@ -77,8 +94,26 @@ export default class Commands
 				permission: 32,
 				func: (msg: Discord.Message, prefix: any) => {
 					this.set('prefix', prefix);
-					this.bot.user.setUsername(`${prefix} | sawahpin!~<3`);
 					return `Prefix set!`
+				}
+			},
+			{
+				name: 'setusername',
+				desc: 'Set the bot\'s username!',
+				args: [
+					{
+						name: 'Username',
+						desc: 'The bot\'s new username.',
+						type: 'string[]',
+						default: '=> | sawahpin!~<3'
+					}
+				],
+				permission: 32,
+				func: (msg: Discord.Message, ...newName: any[]) => {
+					this.bot.user.setUsername(newName.join(' ')).catch(err => {
+						console.log('Unable to set username, try again later.');
+					});
+					return `Username (pwobably) was set! >w<`;
 				}
 			},
 			{

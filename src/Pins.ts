@@ -55,7 +55,7 @@ export default class Pins
 		
 		//Init default options
 		this.options = {
-			threshold: 1,
+			threshold: 5,
 			hours: 12
 		};
 		

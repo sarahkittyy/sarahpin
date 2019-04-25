@@ -47,8 +47,6 @@ export default class Bot
 			this.bot.user.setActivity(` with sarah! <3`, {
 				type: 'PLAYING'
 			});
-			
-			this.bot.user.setUsername(`=> | sawahpin!~<3`);
 		});
 		
 		//On a message being sent.
