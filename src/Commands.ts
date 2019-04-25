@@ -1,5 +1,4 @@
 import * as Discord from 'discord.js';
-import Pins from './Pins';
 
 import {Command} from './CommandSchema';
 
