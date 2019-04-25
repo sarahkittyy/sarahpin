@@ -72,6 +72,8 @@ export default class Bot
 		//Init the pins.
 		this.pins = new Pins(this.bot);
 		
+		this.bot.login(token);
+		
 		//Init the commands instance.
 		this.commands = new Commands(this.bot, this.pins.set.bind(this.pins));
 		
@@ -88,7 +90,6 @@ export default class Bot
 		this.bot.on('messageReactionAdd', (reaction: Discord.MessageReaction)=>{
 			this.pins.onReactionAdd(reaction);
 		})
-		this.bot.login(token);
 	}
 	
 	/**
