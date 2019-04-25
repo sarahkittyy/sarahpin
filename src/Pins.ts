@@ -213,4 +213,38 @@ export default class Pins
 			this.userpinned.set(msg.id, dur);
 		}
 	}
+	
+	/**
+	 * Returns an object representing this bot's settings.
+	 */
+	public saveSettings(): object
+	{
+		let settings = {
+			options: this.options,
+			servers: JSON.stringify(
+				Array.from(this.servers)
+				.reduce((o, [key, value]) => { 
+				  o[key] = value; 
+			  
+				  return o; 
+				}, {})
+			  )
+		};
+		return settings;
+	}
+	
+	/**
+	 * Loads settings from an object.
+	 */
+	public loadSettings(settings: object): void
+	{
+		if(settings['options'])
+		{
+			this.options = settings['options'];
+		}
+		if(settings['servers'])
+		{
+			this.servers = new Map<string, PinServer>(Object.entries(JSON.parse(settings['servers'])));
+		}
+	}
 };
