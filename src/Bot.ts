@@ -79,11 +79,6 @@ export default class Bot
 		
 		//On message edit...
 		this.bot.on('messageUpdate', (oldMessage: Discord.Message, newMessage: Discord.Message) => {
-			//Ignore messages from this bot.
-			if(newMessage.author.id === this.bot.user.id)
-			{
-				return;
-			}
 			this.pins.onMessageUpdate(newMessage);
 		});
 		//Message reacts are an update as well.
