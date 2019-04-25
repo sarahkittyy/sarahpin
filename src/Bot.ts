@@ -47,6 +47,8 @@ export default class Bot
 			this.bot.user.setActivity(` with sarah! <3`, {
 				type: 'PLAYING'
 			});
+			
+			this.bot.user.setUsername(`=> | sawahpin!~<3`);
 		});
 		
 		//On a message being sent.
@@ -89,7 +91,7 @@ export default class Bot
 		//Message reacts are an update as well.
 		this.bot.on('messageReactionAdd', (reaction: Discord.MessageReaction)=>{
 			this.pins.onReactionAdd(reaction);
-		})
+		});
 	}
 	
 	/**

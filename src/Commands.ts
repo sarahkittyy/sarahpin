@@ -43,8 +43,6 @@ export default class Commands
 			prefix: '=>'
 		};
 		
-		this.bot.user.setUsername(`${this.options.prefix} | sawahpin!~<3`);
-		
 		this.commands = [
 			{
 				name: 'setgame',
@@ -79,6 +77,7 @@ export default class Commands
 				permission: 32,
 				func: (msg: Discord.Message, prefix: any) => {
 					this.set('prefix', prefix);
+					this.bot.user.setUsername(`${prefix} | sawahpin!~<3`);
 					return `Prefix set!`
 				}
 			},
