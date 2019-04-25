@@ -135,7 +135,7 @@ export default class Commands
 				permission: 32,
 				func: (msg: Discord.Message, type: any, channel: any) => {
 					this.pinset(`${type}pin`, `${channel}`, msg.guild.id);
-					return `Set pin channel!`;
+					return `Set ${type} pin channel!`;
 				}
 			}
 		];
