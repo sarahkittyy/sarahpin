@@ -85,6 +85,10 @@ export default class Bot
 		this.bot.on('messageReactionAdd', (reaction: Discord.MessageReaction)=>{
 			this.pins.onReactionAdd(reaction);
 		});
+		
+		this.bot.on('error', (error: Error)=>{
+			console.log(error);
+		});
 	}
 	
 	/**
